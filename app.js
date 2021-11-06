@@ -1,8 +1,11 @@
 // https://www.youtube.com/watch?v=qwfE7fSVaZM
-// 6 hrs  37' 53''
+// 6 hrs  56' 50''
 require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
+
+// db
+const connectDB = require('./db/connect');
 
 // routes
 const jobsRouter = require('./routes/jobs');
@@ -39,6 +42,8 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
+		await connectDB(process.env.MONGODB_SRV);
+		
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
