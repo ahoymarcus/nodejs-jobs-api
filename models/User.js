@@ -1,5 +1,6 @@
 // MODELS
 const mongoose = require('mongoose');
+const bcryptjs = require('bcryptjs');
 
 
 
@@ -26,6 +27,15 @@ const UserSchema = new mongoose.Schema({
 	}
 });
 
+
+// Escolher contexto do objeto com this!!!
+UserSchema.pre('save', async function(next) {
+	// Random bytes of data in salt...
+	const salt = await bcryptjs.genSalt(10);
+	this.password = await bcryptjs.hash(this.password, salt);
+	
+	next();
+});
 
 
 

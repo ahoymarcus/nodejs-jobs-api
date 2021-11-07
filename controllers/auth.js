@@ -8,20 +8,12 @@ const { BadRequestError } = require('../errors');
 
 // ATTENTION: never repass passwords AS Strings!!! 
 const register = async (req, res) => {
-	const { name, email, password } = req.body;
-	
-	// Random bytes data
-	const salt = await bcryptjs.genSalt(10);
-	const hashedPassword = await bcryptjs.hash(password, salt);
-	
-	const tempUser = { name, email, password: hashedPassword };
-	
 	// Manual validation without Mongoose
 	// if (!name || !email || !password) {
 		// throw new BadRequestError('Please, provide name, email and password');
 	// }
 	
-	const user = await User.create({ ...tempUser });
+	const user = await User.create({ ...req.body });
 	
 	res.status(StatusCodes.CREATED).json({ user });
 };
