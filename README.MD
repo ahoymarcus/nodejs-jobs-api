@@ -1,7 +1,7 @@
 # Jobs API - Freecodecamp.org
 
 
-Estudo de backend Node-JS com o projeto **Freecodecamp**, para criar uma aplicação de estudo para treinar o padrão de autenticação JSON Web Token (JWT), uma importante parte dentro do desenvolvimento de aplicações web quanto ao quesito de segurança.[^1]
+Estudo de backend Node-JS com o projeto **Freecodecamp**, para criar uma API completa para um serviço de dados ligado a empregabilidade dos usuários. E, além da API propriamente dita, a aplicação vai utilizar autenticação JSON Web Token (JWT) para logar nas rotas restritas, além de usar Bcryptjs como forma de hashear dados de senhas a serem armazenados no banco de dados, todo isso que faz parte de uma importante função para desenvolvimento suguro de aplicações web.[^1]
 
 
 <br />
@@ -55,14 +55,14 @@ Dependências:
 
 <br />
 
-### Aqui vemos na tela do professor Smilga o objetivo final do projeto, que é a realização de uma requisição GET para uma rota restrita com a passagem de um JWT válido:              
+### A:              
 ![Imagem o objetivo final do projeto](/public/images/)
 
 
 
 <br />
 
-### Criando um usuário na rota POST /login e recebendo um JWT válido para ser usado nas requisições seguintes:                
+### C:                
 ![Imagem do sucesso na criação de um usuário e do token JWT no sistema](/public/images/)
 
 
@@ -70,7 +70,7 @@ Dependências:
 
 <br />
 
-### Aqui temos a construção da requisição básica a uma rota restrita através do Postman, em que é passado o JWT no Header:                   
+### A:                   
 ![Imagem da construção de uma requisição para rota restrita com um jwt](/public/images/)
 
 
@@ -79,7 +79,7 @@ Dependências:
 
 <br />
 
-### Agora, temos a resposta do servidor a uma tentativa de acesso a uma rota restrita sem o token JWT necessário:                
+### A:                
 ![Imagem da a resposta do servidor a uma tentativa de acesso a uma rota restrita sem o token JWT necessário](/public/images/)
 
 
@@ -88,7 +88,7 @@ Dependências:
 
 <br />
 
-### Já abaixo, ocorre a resposta do servidor com o acesso à rota restrita quando da correta validação do token JWT:                
+### J:                
 ![Imagem da resposta do servidor com o acesso à rota restrita quando da correta validação do token JWT](/public/images/)
 
 
@@ -99,7 +99,7 @@ Dependências:
 
 <br />
 
-### Finalmente, o teste da aplicação usando a aplicação de Frontend em Vanilla JS providenciado pelo professor Smilga. Observa-se o token presente no LocalStorage da aplicação frontend:                
+### F:                
 ![Imagem do teste da aplicação usando a aplicação de Frontend em Vanilla JS providenciado pelo professor Smilga](/public/images/)
 
 

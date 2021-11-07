@@ -10,6 +10,7 @@ const { BadRequestError } = require('../errors');
 const register = async (req, res) => {
 	const { name, email, password } = req.body;
 	
+	// Random bytes data
 	const salt = await bcryptjs.genSalt(10);
 	const hashedPassword = await bcryptjs.hash(password, salt);
 	
