@@ -29,7 +29,17 @@ const createJob = async (req, res) => {
 const getJob = async (req, res) => {
 	console.log('req.params = ', req.params);
 	
-	const job = await Job.findOne( req.body );
+	// Lembrar que o obj user vem de req auth...
+	const { user: { userId }, params: { id: jobId } } = req; 
+	
+	const job = await Job.findOne({ 
+		_id: jobId,
+		createdBy: userId
+	});
+	
+	if (!job) {
+		throw new NotFoundError(`No job with id ${jobId}`);
+	}
 	
 	res.status(StatusCodes.OK).json({ job });
 };
