@@ -30,7 +30,10 @@ const getJob = async (req, res) => {
 	console.log('req.params = ', req.params);
 	
 	// Lembrar que o obj user vem de req auth...
-	const { user: { userId }, params: { id: jobId } } = req; 
+	const { 
+		user: { userId }, 
+		params: { id: jobId } 
+	} = req; 
 	
 	const job = await Job.findOne({ 
 		_id: jobId,
@@ -46,9 +49,31 @@ const getJob = async (req, res) => {
 
 
 const updateJob = async (req, res) => {
-	console.log('req.body')
+	console.log('req.params = ', req.params);
 	
-	res.send('updateJob');
+	const { 
+		body: { company, position },
+		user: { userId },
+		params: { id: jobId }
+	} = req;
+	
+	if (company === '' || position === '') {
+		throw new BadRequestError('Neither company or position can be empty');
+	}
+	
+	const job = await Job.findByIdAndUpdate({
+		_id: jobId,
+		createdBy: userId
+	}, req.body, { 
+		new: true, 
+		runValidators: true 
+	});
+	
+	if (!job) {
+		throw new NotFoundError(`No job with the id ${jobId}`);
+	}
+	
+	res.status(StatusCodes.OK).json({ job });
 };
 
 
