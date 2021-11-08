@@ -1,30 +1,44 @@
 // controllers
+const { StatusCodes } = require('http-status-codes');
+const Job = require('../models/Job');
+
+
 
 const getAllJobs = async (req, res) => {
+	const jobs = await Job.find( {} );
 	
-	res.send('getAllJobs');
+	
+	res.status(StatusCodes.OK).json({ jobs });
 };
 
 
 const createJob = async (req, res) => {
+	console.log('req.body = ', req.body);
 	
-	res.send('createJob');
+	const job = await Job.create( req.body );
+	
+	res.status(StatusCodes.CREATED).json({ job });
 };
 
 
 const getJob = async (req, res) => {
+	console.log('req.params = ', req.params);
 	
-	res.send('getJob')
+	const job = await Job.findOne( req.body );
+	
+	res.status(StatusCodes.OK).json({ job });
 };
 
 
 const updateJob = async (req, res) => {
+	console.log('req.body')
 	
 	res.send('updateJob');
 };
 
 
 const deleteJob = async (req, res) => {
+	
 	
 	res.send('deleteJob');
 };
