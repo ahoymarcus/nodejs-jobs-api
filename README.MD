@@ -51,66 +51,116 @@ Dependências:
 - Yamljs
 
 
+<br />
+Desse modo, o usuário deve primeiramente realizar uma requizição POST para a URL:
+
+<br />
+
+```
+/api/v1/auth/register
+```
+
+<br  />
+
+Passando no corpo da requisição um JSON com as propriedades **name**, **email** e **password**, para receber na resposta um token JWT (JSON Web Token):
+
+
+```
+{
+	"name": "Tila",
+	"email": "tila@gmail.com",
+	"password": "123456"
+}
+```
+
+<br />
+
+O token recebido na resposta da requisição POST é usado para se poder acessar os dados desta API. Ademais, o token também pode ser conseguido para usuários anteriormente credenciados que façam o seu devido login:
+
+<br />
+
+```
+/api/v1/auth/login
+```
+
+<br  />
+
+Passando no corpo da requisição um JSON com as propriedades **email** e **password**, para receber na resposta um token JWT (JSON Web Token):
+
+
+```
+{
+	"email": "tila@gmail.com",
+	"password": "123456"
+}
+```
+
+<br />
+
+**Observe que o valor de email é usado como propriedade Unique no banco de dados para garantir um ID único a cada usuário.**
 
 
 <br />
 
-### A:              
-![Imagem o objetivo final do projeto](/public/images/)
-
-
+De qualquer forma, o token retornado deve ser utilizado nas requisições de dados posterioris para acesso aos dados. Por exemplo, no uso de uma ferramenta de teste de requisições como Postman, o token deve ser copiado e colocado no cabeçalho das requisições GET ou ser passado como uma variável interna para a ferramenta, para só assim ser disponibilizado o acesso para as 04 rotas de dados, segindo a devida sintaxe abaixo:
 
 <br />
 
-### C:                
-![Imagem do sucesso na criação de um usuário e do token JWT no sistema](/public/images/)
-
-
-
+```
+headers.authorization = 'Bearer <valor do token>';
+```
 
 <br />
 
-### A:                   
-![Imagem da construção de uma requisição para rota restrita com um jwt](/public/images/)
+### Abaixo, temos um exemplo de requisição feita com o framework Postman usando de variável interna configurada:
 
-
-
-
-
-<br />
-
-### A:                
-![Imagem da a resposta do servidor a uma tentativa de acesso a uma rota restrita sem o token JWT necessário](/public/images/)
-
-
-
-
-
-<br />
-
-### J:                
-![Imagem da resposta do servidor com o acesso à rota restrita quando da correta validação do token JWT](/public/images/)
-
-
-
-
-
-
-
-<br />
-
-### F:                
-![Imagem do teste da aplicação usando a aplicação de Frontend em Vanilla JS providenciado pelo professor Smilga](/public/images/)
-
-
+![ Abaixo, temos um exemplo de requisição feita com o framework Postman](/public/images/jobs-api-01.png)
 
 
 <br />
 
 
+As rotas foram construídas encima das seguintes URLs:
+
+1. Get All Jobs
+```
+/api/v1/jobs
+```
+
+<br />
+
+2. POST - Create Job
+```
+/api/v1/launches/jobs
+```
+
+<br />
+
+3. GET Single Job
+```
+/api/v1/launches/jobs/61898ce0a41ef953e4560598
+```
+
+<br />
+
+4. PATCH - Update Job
+```
+/api/v1/launches/jobs/61898cd2a41ef953e4560596
+```
+
+<br />
+
+4. DELETE Job
+```
+/api/v1/launches/jobs/61898caaa41ef953e4560592
+```
+
+<br />
+
+Também foi utilizado a dependência Cors para Node-JS, para permitir testar a requisição no ambiente local!
 
 
-
+<br />
 
 
 
